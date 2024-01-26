@@ -1,8 +1,19 @@
 <!DOCTYPE html>
 <html>
 <body>
-<h1>
-    Hello world!
-</h1>
+<h1>Users</h1>
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Old</th>
+    </tr>
+    <tr th:each="user : ${users}">
+        <td th:utext="${user.name}">Name</td>
+        <td th:utext="${user.surname}">Surname</td>
+        <td th:utext="${user.old}">Old</td>
+
+    </tr>
+</table>
 </body>
 </html>
