@@ -1,7 +1,6 @@
 package com.danial.spring.service;
 
 import com.danial.spring.dao.UserDao;
-import com.danial.spring.dao.UserDaoImp;
 import com.danial.spring.model.User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,7 +10,11 @@ import java.util.List;
 @Service
 public class UserServiceImp implements UserService{
 
-    UserDao userDao = new UserDaoImp();
+    private final UserDao userDao;
+
+    public UserServiceImp(UserDao userDao) {
+        this.userDao = userDao;
+    }
 
     @Override
     @Transactional
@@ -20,17 +23,20 @@ public class UserServiceImp implements UserService{
     }
 
     @Override
-    public void add(User user) {
-
+    @Transactional
+    public void addOrUpdate(User user) {
+        userDao.addOrUpdate(user);
     }
 
     @Override
-    public void edit(User user) {
-
-    }
-
-    @Override
+    @Transactional
     public void delete(int id) {
+        userDao.delete(id);
+    }
 
+    @Override
+    @Transactional
+    public User get(int id) {
+        return userDao.get(id);
     }
 }

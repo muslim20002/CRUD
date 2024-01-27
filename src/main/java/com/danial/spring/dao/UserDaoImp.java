@@ -15,6 +15,10 @@ public class UserDaoImp implements UserDao{
     private EntityManager entityManager;
 
 
+    @Override
+    public User get(int id) {
+        return entityManager.find(User.class, id);
+    }
 
     @Override
     public List<User> getALL() {
@@ -22,18 +26,14 @@ public class UserDaoImp implements UserDao{
     }
 
     @Override
-    public void add(User user) {
-        entityManager.persist(user);
-        entityManager.close();
+    public void addOrUpdate(User user) {
+        entityManager.merge(user);
     }
 
-    @Override
-    public void edit(User user) {
-
-    }
 
     @Override
     public void delete(int id) {
-
+        User user = entityManager.find(User.class, id);
+        entityManager.remove(user);
     }
 }
