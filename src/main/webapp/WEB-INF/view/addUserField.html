@@ -10,10 +10,13 @@
     <input hidden="hidden" type="number" th:field="*{id}" id="id" placeholder="id">
     <label for="name">Name:</label><br>
     <input type="text" id="name" name="name" th:value="${user.name}"><br>
+    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error"></span><br>
     <label for="surname">Surname:</label><br>
     <input type="text" id="surname" name="surname" th:value="${user.surname}"><br>
-    <label for="old">Old:</label><br>
+    <span th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}" class="error"></span><br>
+    <label for="old">Years old:</label><br>
     <input type="number" id="old" name="old" th:value="${user.old}"><br>
+    <span th:if="${#fields.hasErrors('old')}" th:errors="*{old}" class="error"></span><br>
     <input type="submit" value="Add">
 </form>
 </body>

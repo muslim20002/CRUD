@@ -4,19 +4,21 @@ package com.danial.spring.controller;
 import com.danial.spring.model.User;
 import com.danial.spring.service.UserService;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-public class HelloController {
+public class UserController {
     private final UserService userService;
 
-    public HelloController(UserService userService) {
+    public UserController(UserService userService) {
         this.userService = userService;
     }
 
@@ -35,9 +37,13 @@ public class HelloController {
     }
 
     @RequestMapping("/addOrUpdate")
-    public String add(@ModelAttribute("user") User user) {
-        userService.addOrUpdate(user);
-        return "redirect:/";
+    public String add(@Valid @ModelAttribute("user") User user, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "addUserField";
+        } else {
+            userService.addOrUpdate(user);
+            return "redirect:/";
+        }
     }
 
     @RequestMapping("/removeUser")
