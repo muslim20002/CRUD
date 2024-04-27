@@ -1,7 +1,7 @@
-package com.danial.spring.service;
+package web.service;
 
-import com.danial.spring.dao.UserDao;
-import com.danial.spring.model.User;
+import web.dao.UserDao;
+import web.model.User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

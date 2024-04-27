@@ -1,8 +1,8 @@
-package com.danial.spring.controller;
+package web.controller;
 
 
-import com.danial.spring.model.User;
-import com.danial.spring.service.UserService;
+import web.model.User;
+import web.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;

@@ -1,6 +1,6 @@
-package com.danial.spring.dao;
+package web.dao;
 
-import com.danial.spring.model.User;
+import web.model.User;
 
 import java.util.List;
 

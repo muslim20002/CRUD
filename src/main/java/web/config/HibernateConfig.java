@@ -1,4 +1,4 @@
-package com.danial.spring.config;
+package web.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -18,19 +18,19 @@ import java.util.Properties;
 @Configuration
 @PropertySource("classpath:application.properties")
 @EnableTransactionManagement
-@ComponentScan(value = "com.danial.spring")
-public class DatabaseConfig {
+@ComponentScan(value = "web")
+public class HibernateConfig {
 
-    private Environment environment;
+    private final Environment environment;
 
     @Autowired
-    public DatabaseConfig(Environment env) {
+    public HibernateConfig(Environment env) {
         this.environment = env;
     }
 
-    
+
     @Bean
-    public JpaTransactionManager transactionManager(){
+    public JpaTransactionManager transactionManager() {
         JpaTransactionManager jpaTransactionManager = new JpaTransactionManager();
         jpaTransactionManager.setEntityManagerFactory(localContainerEntityManagerFactoryBean().getObject());
         return jpaTransactionManager;
